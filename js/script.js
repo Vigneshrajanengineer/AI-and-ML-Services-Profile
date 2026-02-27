@@ -80,26 +80,73 @@ if (wishBtn) {
 }
 
 // ================= AI FACE + VOICE =================
-const aiAgent = document.getElementById("aiAgent");
+/* ================= JARVIS AI CORE ================= */
 
-function speak(text){
-    const speech = new SpeechSynthesisUtterance(text);
-
-    aiAgent.style.display="flex";
-    aiAgent.classList.add("speaking");
-
-    speech.onend=()=>{
-        aiAgent.classList.remove("speaking");
-        setTimeout(()=>aiAgent.style.display="none",1000);
-    };
-
-    window.speechSynthesis.speak(speech);
+.jarvis-container {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
 }
 
-window.onload = ()=>{
-    speak("Welcome to Vignesh AI portfolio website. How can I assist you?");
-};
+.jarvis-core {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+}
 
+.core-center {
+    width: 40px;
+    height: 40px;
+    background: #00c8ff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px #00c8ff, 0 0 40px #0078d4;
+}
+
+.pulse-ring {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 2px solid #00c8ff;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.pulse-ring.delay {
+    animation-delay: 1s;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+.mic-btn {
+    background: #0a192f;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,200,255,0.6);
+}
+
+.listening .core-center {
+    animation: glow 0.6s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 20px #00c8ff; }
+    to { box-shadow: 0 0 50px #00c8ff, 0 0 80px #0078d4; }
+}
 // ================= CHATBOT =================
 const chatToggle=document.getElementById("chatToggle");
 const chatbotBox=document.getElementById("chatbotBox");
@@ -139,3 +186,4 @@ if(chatToggle){
         },600);
     };
 }
+
