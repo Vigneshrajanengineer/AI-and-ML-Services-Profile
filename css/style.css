@@ -135,3 +135,11 @@ body {
     border-radius: 10px;
     margin-top: 20px;
 }
+.form-message {
+    display: none;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #0078d4;
+    font-weight: 600;
+}
+
