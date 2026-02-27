@@ -82,3 +82,18 @@ if (track && slides.length > 0) {
 
     window.addEventListener('resize', updateCarousel);
 }
+// ================= Thank You Section =================
+
+const wishBtn = document.getElementById("wishBtn");
+const thankYouSection = document.getElementById("thankYouSection");
+
+if (wishBtn) {
+    wishBtn.addEventListener("click", function () {
+
+        setTimeout(() => {
+            thankYouSection.style.display = "block";
+            thankYouSection.scrollIntoView({ behavior: "smooth" });
+        }, 800);
+
+    });
+}
