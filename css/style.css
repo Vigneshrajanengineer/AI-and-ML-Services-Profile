@@ -167,5 +167,12 @@ body {
 .secondary-btn {
     background: #0a192f;
 }
+.certificate-card img {
+    width: 100%;
+    height: 140px;   /* reduced from 180px */
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
 
 
