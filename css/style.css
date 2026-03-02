@@ -147,8 +147,25 @@ body {
     font-weight: 600;
     margin-bottom: 15px;
 }
+/* Certificate Button Layout */
+
+.cert-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.verify-btn {
+    background: #00c853;
+}
+
+.verify-btn:hover {
+    background: #009624;
+}
 
 .secondary-btn {
     background: #0a192f;
 }
+
 
