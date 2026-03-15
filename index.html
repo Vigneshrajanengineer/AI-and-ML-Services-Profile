@@ -6,80 +6,129 @@
 <title>Vignesh R | AI/ML Portfolio</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
-<!-- WhatsApp Floating Chat -->
-<div class="wa-chat">
+<!-- Floating Chat Widget -->
+<div class="ai-widget">
 
-<div class="wa-header">
-<img src="images/profile.jpg" class="wa-photo">
+<div class="ai-header">
+<img src="images/profile.jpg" class="ai-photo">
 <div>
 <b>Vignesh</b><br>
-<span class="status">Typically replies instantly</span>
+<span class="ai-status">AI Assistant • Online</span>
 </div>
 </div>
 
-<div class="wa-body">
-Hi 👋<br>
-Welcome to my profile website.<br>
-Click below to chat with me on WhatsApp.
+<div class="ai-chat" id="aiChat">
+Hi 👋 I am Vignesh's AI assistant.<br>
+You can ask about projects, career, or chat on WhatsApp.
 </div>
 
-<a href="https://wa.me/919500322580?text=Hello%20I%20visited%20your%20profile%20website"
-class="wa-btn"
+<div class="ai-buttons">
+
+<button id="voiceBtn">🎤 Voice</button>
+
+<a href="https://wa.me/919500322580?text=Hello%20I%20visited%20your%20profile"
 target="_blank">
-Chat on WhatsApp
+💬 WhatsApp
 </a>
+
+</div>
 
 </div>
 
 <style>
 
-.wa-chat{
+.ai-widget{
 position:fixed;
 bottom:20px;
 right:20px;
-width:280px;
+width:300px;
 background:white;
-border-radius:10px;
-box-shadow:0 4px 12px rgba(0,0,0,0.2);
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
 font-family:Arial;
 z-index:1000;
 }
 
-.wa-header{
-background:#25D366;
+.ai-header{
+background:#007bff;
 color:white;
 padding:10px;
 display:flex;
 align-items:center;
-border-radius:10px 10px 0 0;
+border-radius:12px 12px 0 0;
 }
 
-.wa-photo{
+.ai-photo{
 width:40px;
 height:40px;
 border-radius:50%;
 margin-right:10px;
 }
 
-.status{
+.ai-status{
 font-size:12px;
 }
 
-.wa-body{
+.ai-chat{
 padding:12px;
 font-size:14px;
 }
 
-.wa-btn{
-display:block;
-text-align:center;
-background:#25D366;
-color:white;
+.ai-buttons{
+display:flex;
+justify-content:space-around;
 padding:10px;
-text-decoration:none;
-border-radius:0 0 10px 10px;
 }
 
+.ai-buttons a, .ai-buttons button{
+background:#25D366;
+color:white;
+padding:8px 12px;
+border:none;
+border-radius:6px;
+text-decoration:none;
+cursor:pointer;
+}
+
+</style>
+
+<script>
+
+const voiceBtn = document.getElementById("voiceBtn");
+const chat = document.getElementById("aiChat");
+
+const SpeechRecognition =
+window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const recognition = new SpeechRecognition();
+
+recognition.lang="en-US";
+
+voiceBtn.onclick = () =>{
+
+chat.innerHTML="🎤 Listening...";
+
+recognition.start();
+
+};
+
+recognition.onresult = function(event){
+
+let speech = event.results[0][0].transcript;
+
+chat.innerHTML="You: "+speech;
+
+let reply="Nice to meet you. Welcome to Vignesh portfolio website.";
+
+chat.innerHTML+="<br>AI: "+reply;
+
+let voice = new SpeechSynthesisUtterance(reply);
+
+speechSynthesis.speak(voice);
+
+};
+
+</script>
 </style>
 <body>
 
