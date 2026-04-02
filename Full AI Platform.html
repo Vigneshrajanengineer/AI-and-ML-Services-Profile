@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+<meta charset="UTF-8">
+<title>Full AI Platform</title>
+<style>
+body {
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg, #0a192f, #0078d4);
+  margin: 0;
+  padding: 30px;
+  color: white;
+}
+/* Layout */
+.container {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* Sidebar Column */
+.column {
+  width: 240px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.column:hover {
+  transform: translateY(-3px);
+ 
+}
+
+/* Items */
+.item {
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  font-size: 14px;
+  color: #0a192f;
+}
+
+.item:hover {
+  background: #edf4ff;
+  color: #1d4ed8;
+}
+
+.active {
+  background: linear-gradient(135deg,  #0a192f, #0078d4);
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Demo Box */
+.demo-box {
+  flex: 1;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  min-height: 300px;
+  color: #0a192f;
+}
+
+/* Buttons */
+button {
+  padding: 10px 16px;
+  margin-top: 12px;
+  background: linear-gradient(135deg, #4CAF50, #2e7d32);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #43a047, #1b5e20);
+  transform: scale(1.03);
+}
+
+/* Inputs */
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.15);
+}
+
+/* Result Box */
+.result {
+  margin-top: 15px;
+  background: #f1f5ff;
+  padding: 12px;
+  border-radius: 10px;
+  border-left: 4px solid #4CAF50;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<h2> Full AI Task Platform</h2>
+
+<div class="container">
+  <div class="column" id="level1"></div>
+  <div class="column" id="level2"></div>
+  <div class="column" id="level3"></div>
+</div>
+
+<div id="output">Selected: None</div>
+
+<div class="demo-box">
+  <h3>AI Demo</h3>
+  <div id="demoContent">Select any task</div>
+</div>
+
+<script>
+
+
+// 🔥 FULL AI DATA (UPDATED WITH SPEECH)
+const data = {
+
+"Machine Learning": {
+  "Supervised": ["Classification", "Regression", "Ranking", "Recommendation"],
+  "Unsupervised": ["Clustering", "Dimensionality Reduction", "Anomaly Detection"],
+  "Reinforcement": ["Q-Learning", "Policy-Based", "Actor-Critic"]
+},
+
+"Deep Learning": {
+  "CNN": ["Image Classification", "Object Detection", "Segmentation"],
+  "RNN": ["LSTM", "GRU", "Time Series"],
+  "Transformers": ["Text Generation","Translation","QA"]
+},
+
+"Computer Vision": {
+  "Tasks": ["Classification", "Detection", "Tracking", "Segmentation",
+      "OCR", "Pose Estimation", "3D Vision"]
+},
+
+"NLP": {
+  "Tasks": ["Text Classification", "NER", "Sentiment Analysis",
+      "Summarization", "Translation", "QA", "Chatbots"]
+},
+
+"Generative AI": {
+  "Tasks": ["Text Generation","Image Generation","Video Generation",
+      "Audio Generation", "Multimodal AI", "RAG","AI Agents"]
+},
+
+"Speech AI": {   // 🔥 NEW DOMAIN
+  "Tasks": [
+    "Speech-to-Text",
+    "Text-to-Speech",
+    "Voice Command Detection",
+    "Speaker Recognition",
+    "Emotion Detection (Speech)"
+  ]
+},
+// 🔥 NEW ADDITIONS
+
+"Data Science": {
+  "Tasks": [
+    "EDA","Data Visualization","Feature Engineering",
+    "Statistical Analysis","Time Series Analysis","A/B Testing"
+  ]
+},
+
+"MLOps": {
+  "Tasks": [
+    "Model Deployment","Monitoring","CI/CD",
+    "Docker","Kubernetes","Cloud Deployment","Model Versioning"
+  ]
+},
+
+"ADAS": {
+  "Tasks": [
+    "Object Detection","Lane Detection","Tracking",
+    "Sensor Fusion","Localization","Path Planning",
+    "Traffic Sign Recognition"
+  ]
+}
+
+};
+
+
+
+// UI refs
+const l1 = document.getElementById("level1");
+const l2 = document.getElementById("level2");
+const l3 = document.getElementById("level3");
+const demo = document.getElementById("demoContent");
+const output = document.getElementById("output");
+
+function clear(col){ col.innerHTML=""; }
+function active(el,parent){
+  Array.from(parent.children).forEach(x=>x.classList.remove("active"));
+  el.classList.add("active");
+}
+
+// LEVEL 1
+Object.keys(data).forEach(k=>{
+  let d=document.createElement("div");
+  d.className="item"; d.innerText=k;
+  d.onclick=()=>{ active(d,l1); loadL2(k); clear(l3); };
+  l1.appendChild(d);
+});
+
+// LEVEL 2
+function loadL2(k){
+  clear(l2);
+  Object.keys(data[k]).forEach(sub=>{
+    let d=document.createElement("div");
+    d.className="item"; d.innerText=sub;
+    d.onclick=()=>{ active(d,l2); loadL3(k,sub); };
+    l2.appendChild(d);
+  });
+}
+
+// LEVEL 3
+function loadL3(k,sub){
+  clear(l3);
+  data[k][sub].forEach(task=>{
+    let d=document.createElement("div");
+    d.className="item"; d.innerText=task;
+
+    d.onclick=()=>{
+      active(d,l3);
+      output.innerText=`Selected: ${k} > ${sub} > ${task}`;
+      loadDemo(task);
+    };
+
+    l3.appendChild(d);
+  });
+}
+
+// 🔥 DEMO LOADER (UPDATED WITH SPEECH)
+function loadDemo(task){
+
+// 🎤 SPEECH TO TEXT
+if(task==="Speech-to-Text"){
+demo.innerHTML=`
+<h4>🎤 Speech to Text</h4>
+<button onclick="startSpeech()">Start Listening</button>
+<div class="result" id="res"></div>`;
+}
+
+// 🔊 TEXT TO SPEECH
+else if(task==="Text-to-Speech"){
+demo.innerHTML=`
+<h4>🔊 Text to Speech</h4>
+<input id="ttsText" placeholder="Enter text"/>
+<button onclick="speak()">Speak</button>
+<div class="result" id="res"></div>`;
+}
+
+// 🎯 VOICE COMMAND
+else if(task==="Voice Command Detection"){
+demo.innerHTML=`
+<h4>🎯 Voice Command</h4>
+<p>Try saying: "open", "stop"</p>
+<button onclick="voiceCmd()">Start</button>
+<div class="result" id="res"></div>`;
+}
+
+// NLP
+else if(task==="Sentiment Analysis"){
+demo.innerHTML=`
+<textarea id="txt"></textarea>
+<button onclick="sentiment()">Analyze</button>
+<div class="result" id="res"></div>`;
+}
+
+// GEN AI
+else if(task==="Text Generation"){
+demo.innerHTML=`
+<input id="prompt"/>
+<button onclick="gen()">Generate</button>
+<div class="result" id="res"></div>`;
+}
+
+// DEFAULT
+else{
+demo.innerHTML=`
+<h4>${task}</h4>
+<button onclick="fake('${task}')">Run Demo</button>
+<div class="result" id="res"></div>`;
+}
+}
+
+// 🎤 Speech Recognition
+function startSpeech(){
+let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.onresult = function(event){
+document.getElementById("res").innerText = event.results[0][0].transcript;
+};
+recognition.start();
+}
+
+// 🔊 Text-to-Speech
+function speak(){
+let text = document.getElementById("ttsText").value;
+let speech = new SpeechSynthesisUtterance(text);
+speechSynthesis.speak(speech);
+document.getElementById("res").innerText="Speaking...";
+}
+
+// 🎯 Voice Command
+function voiceCmd(){
+let rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+rec.onresult = function(e){
+let cmd = e.results[0][0].transcript.toLowerCase();
+if(cmd.includes("open")) alert("Opening 🚀");
+else if(cmd.includes("stop")) alert("Stopping ⛔");
+document.getElementById("res").innerText=cmd;
+};
+rec.start();
+}
+
+// OTHER DEMOS
+function sentiment(){
+let t=document.getElementById("txt").value;
+document.getElementById("res").innerText =
+t.includes("good") ? "Positive 😊" :
+t.includes("bad") ? "Negative 😢" : "Neutral";
+}
+
+function gen(){
+let p=document.getElementById("prompt").value;
+document.getElementById("res").innerText="Generated: "+p;
+}
+
+function fake(task){
+document.getElementById("res").innerText = task+" executed ✅";
+}
+
+
+</script>
+
+</body>
+</html>
