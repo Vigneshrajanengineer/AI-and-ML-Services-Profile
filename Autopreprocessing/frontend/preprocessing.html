@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Data Preprocessing Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+<h1>📊Auto Data Preprocessing Platform</h1>
+
+<input type="file" id="fileInput"class="btnn">
+<button onclick="uploadFile()"class="bbn">Upload</button>
+
+<div id="dataPreview"></div>
+
+<h3>⚙️ Operations</h3>
+<button onclick="handleMissing()"class="btn">Handle Missing</button>
+<button onclick="removeDuplicates()"class="btn">Remove Duplicates</button>
+<button onclick="encode()"class="btn">Encode</button>
+<button onclick="scale()"class="btn">Scale</button>
+
+<h2> Download Processed Data</h2>
+<button onclick="download()"class="bttn">Download Processed Data</button>
+
+<script src="script.js"></script>
+</body>
+</html>

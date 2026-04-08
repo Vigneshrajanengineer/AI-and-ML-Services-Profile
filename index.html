@@ -1,183 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vignesh R | AI/ML Portfolio</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vignesh R | AI/ML Portfolio</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- ================= STYLES ================= -->
+    <style>
+        /* ===== AI WIDGET ===== */
+        
+        .ai-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-family: Arial;
+            z-index: 1000;
+        }
+        
+        .ai-header {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .ai-photo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .ai-status {
+            font-size: 12px;
+        }
+        
+        .ai-chat {
+            padding: 12px;
+            font-size: 14px;
+        }
+        
+        .ai-buttons {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+        
+        .ai-buttons a,
+        .ai-buttons button {
+            background: #25D366;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* ===== SIDEBAR ===== */
+        
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(180deg, #0a192f, #0078d4);
+            overflow-x: hidden;
+            transition: 0.4s;
+            padding-top: 60px;
+            z-index: 2000;
+        }
+        
+        .sidebar a {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+        }
+        
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+        }
+        /* ===== NAVBAR ===== */
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 25px;
+        }
+        
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .menu-btn {
+            font-size: 22px;
+            cursor: pointer;
+        }
+        
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .nav-right a {
+            margin-left: 20px;
+        }
+        /* ===== BODY SHIFT ===== */
+        
+        body.shift {
+            margin-left: 250px;
+            transition: 0.4s;
+        }
+    </style>
 </head>
-<!-- Floating Chat Widget -->
-<div class="ai-widget">
 
-<div class="ai-header">
-<img src="images/profile.jpg" class="ai-photo">
-<div>
-<b>Vignesh</b><br>
-<span class="ai-status">AI Assistant • Online</span>
-</div>
-</div>
 
-<div class="ai-chat" id="aiChat">
-Hi 👋 I am Vignesh's AI assistant.<br>
-You can ask about projects, career, or chat on WhatsApp.
-</div>
-
-<div class="ai-buttons">
-
-<button id="voiceBtn">🎤 Voice</button>
-
-<a href="https://wa.me/919500322580?text=Hello%20I%20visited%20your%20profile"
-target="_blank">
-💬 WhatsApp
-</a>
-
-</div>
-
-</div>
-
-<style>
-
-.ai-widget{
-position:fixed;
-bottom:20px;
-right:20px;
-width:300px;
-background:white;
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
-font-family:Arial;
-z-index:1000;
-}
-
-.ai-header{
-background:#007bff;
-color:white;
-padding:10px;
-display:flex;
-align-items:center;
-border-radius:12px 12px 0 0;
-}
-
-.ai-photo{
-width:40px;
-height:40px;
-border-radius:50%;
-margin-right:10px;
-}
-
-.ai-status{
-font-size:12px;
-}
-
-.ai-chat{
-padding:12px;
-font-size:14px;
-}
-
-.ai-buttons{
-display:flex;
-justify-content:space-around;
-padding:10px;
-}
-
-.ai-buttons a, .ai-buttons button{
-background:#25D366;
-color:white;
-padding:8px 12px;
-border:none;
-border-radius:6px;
-text-decoration:none;
-cursor:pointer;
-}
-
-</style>
-
-<script>
-
-const voiceBtn = document.getElementById("voiceBtn");
-const chat = document.getElementById("aiChat");
-
-const SpeechRecognition =
-window.SpeechRecognition || window.webkitSpeechRecognition;
-
-const recognition = new SpeechRecognition();
-
-recognition.lang="en-US";
-
-voiceBtn.onclick = () =>{
-
-chat.innerHTML="🎤 Listening...";
-
-recognition.start();
-
-};
-
-recognition.onresult = function(event){
-
-let speech = event.results[0][0].transcript;
-
-chat.innerHTML="You: "+speech;
-
-let reply="Nice to meet you. Welcome to Vignesh portfolio website.";
-
-chat.innerHTML+="<br>AI: "+reply;
-
-let voice = new SpeechSynthesisUtterance(reply);
-
-speechSynthesis.speak(voice);
-
-};
-
-</script>
-</style>
 <body>
 
-<header class="navbar">
-    <div class="logo">Vignesh R</div>
-    <nav>
-        <a href="index.html" class="active">Dashboard</a>
-        <a href="profile.html">Profile</a>
-        <a href="contact.html">Contact</a>
-        <a href="Full AI Platform.html">Full AI Platform</a>
-        
-    </nav>
-</header>
+    <!-- ================= SIDEBAR ================= -->
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">×</a>
+        <a href="index.html">🏠 Dashboard</a>
+        <a href="profile.html">👤 Profile</a>
+        <a href="contact.html">📞 Contact</a>
+        <a href="Full AI Platform.html">🤖 AI Platform</a>
+        <a href="WebScriping/frontend/WebScriping.html">🌐 Web Scraping Platform</a>
+        <a href="Autopreprocessing/frontend/preprocessing.html">📊Auto Data Preprocessing Platform</a>
+        <a href="AutoMLmodel/frontend/AutoMLmodel.html">🧠 ML Model Builder</a>
+    </div>
 
-<section class="hero">
-    <h1>AI / ML Services Specialist</h1>
-    <p>Computer Vision | NLP | Speech AI | Dataset Engineering</p>
-    <a href="profile.html" class="btn">Explore Profile</a>
-</section>
 
-<section class="section">
-    <img src="images/profile.jpg" class="profile-img">
-    <h2>Welcome</h2>
-    <p>
-        Delivering intelligent AI solutions with enterprise-grade 
-        dataset engineering and scalable model development.
-    </p>
-</section>
+    <!-- ================= HEADER ================= -->
+    <header class="navbar">
 
-<section class="section light-bg">
-    <h2>Neural Network Visualization</h2>
-    <canvas id="neuralCanvas"></canvas>
-</section>
-    
-</section>
+        <div class="nav-left">
+            <span class="menu-btn" onclick="openMenu()">☰</span>
+            <div class="logo">Vignesh R</div>
+        </div>
 
-<footer>
-    © 2026 Vignesh R | AI/ML Specialist
-</footer>
+        </nav>
 
-<script src="js/script.js"></script>
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <h1>AI / ML Services Specialist</h1>
+        <p>Computer Vision | NLP | Speech AI | Dataset Engineering</p>
+        <a href="profile.html" class="btn">Explore Profile</a>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section">
+        <img src="images/profile.jpg" class="profile-img">
+        <h2>Welcome</h2>
+        <p>
+            Delivering intelligent AI solutions with enterprise-grade dataset engineering and scalable model development.
+        </p>
+    </section>
+
+    <!-- ================= VISUALIZATION ================= -->
+    <section class="section light-bg">
+        <h2>Neural Network Visualization</h2>
+        <canvas id="neuralCanvas"></canvas>
+    </section>
+
+
+    <!-- ================= AI WIDGET ================= -->
+    <div class="ai-widget">
+        <div class="ai-header"> <img src="images/profile.jpg" class="ai-photo">
+            <div> <b>Vignesh</b><br> <span class="ai-status">AI Assistant • Online</span> </div>
+        </div>
+        <div class="ai-chat" id="aiChat"> Hi 👋 I am Vignesh's AI assistant.<br> You can ask about projects, career, or chat on WhatsApp. </div>
+        <div class="ai-buttons"> <button id="voiceBtn">🎤 Voice</button> <a href="https://wa.me/919500322580?text=Hello%20I%20visited%20your%20profile" target="_blank"> 💬 WhatsApp </a> </div>
+    </div>
+
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        © 2026 Vignesh R | AI/ML Specialist
+    </footer>
+    <script>
+        function openMenu() {
+            document.getElementById("sidebar").style.width = "250px";
+            document.body.classList.add("shift");
+        }
+
+        function closeMenu() {
+            document.getElementById("sidebar").style.width = "0";
+            document.body.classList.remove("shift");
+        }
+    </script>
+
+
+    <script>
+        /* ================= AI SMART ASSISTANT ================= */
+
+        window.addEventListener("DOMContentLoaded", () => {
+
+            const voiceBtn = document.getElementById("voiceBtn");
+            const chat = document.getElementById("aiChat");
+
+            /* ================= STATE ================= */
+            let userData = {
+                name: "",
+                requirement: "",
+                budget: ""
+            };
+
+            let step = "start";
+
+            /* ================= SPEECH ================= */
+            const SpeechRecognition =
+                window.SpeechRecognition || window.webkitSpeechRecognition;
+
+            if (!SpeechRecognition) {
+                chat.innerHTML = "❌ Voice not supported in this browser";
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.lang = "en-US";
+
+            /* ================= UI ================= */
+            function addMessage(sender, message) {
+                chat.innerHTML += `<br><b>${sender}:</b> ${message}`;
+                chat.scrollTop = chat.scrollHeight;
+            }
+
+            /* ================= AI FLOW ================= */
+            function getAIResponse(input) {
+
+                input = input.toLowerCase();
+
+                /* STEP 1: Greeting */
+                if (step === "start") {
+                    step = "intent";
+                    return "Hello 👋 Welcome to Vignesh AI Portfolio.\nAre you looking for hiring, project development, or collaboration?";
+                }
+
+                /* STEP 2: Detect Intent */
+                if (step === "intent") {
+
+                    if (input.includes("hire") || input.includes("job")) {
+                        step = "ask_name";
+                        return "Great! Let's get started.\nMay I know your name?";
+                    }
+
+                    if (input.includes("project")) {
+                        step = "ask_name";
+                        return "Awesome! I can help with AI projects.\nWhat is your name?";
+                    }
+
+                    if (input.includes("collaboration")) {
+                        step = "ask_name";
+                        return "Sounds good 🤝\nCan I know your name?";
+                    }
+
+                    return "Please tell me if you are looking for hiring, project, or collaboration.";
+                }
+
+                /* STEP 3: Ask Name */
+                if (step === "ask_name") {
+                    userData.name = input;
+                    step = "ask_requirement";
+                    return `Nice to meet you ${userData.name} 😊\nWhat type of AI solution are you looking for?`;
+                }
+
+                /* STEP 4: Requirement */
+                if (step === "ask_requirement") {
+                    userData.requirement = input;
+                    step = "ask_budget";
+                    return "Got it 👍\nDo you have any budget range in mind?";
+                }
+
+                /* STEP 5: Budget */
+                if (step === "ask_budget") {
+                    userData.budget = input;
+                    step = "final";
+
+                    return `Perfect ${userData.name} ✅\n📌 Requirement: ${userData.requirement}💰 Budget: ${userData.budget}
+                     I recommend connecting directly for faster discussion 👇Click WhatsApp button to proceed 🚀`;
+                }
+
+                /* FINAL */
+                if (step === "final") {
+                    return "You can click the WhatsApp button below to connect directly 📲";
+                }
+
+            }
+
+            /* ================= VOICE BUTTON ================= */
+            voiceBtn.addEventListener("click", () => {
+                chat.innerHTML = "🎤 Listening...";
+                recognition.start();
+            });
+
+            /* ================= RESULT ================= */
+            recognition.onresult = function(event) {
+
+                let speech = event.results[0][0].transcript;
+
+                chat.innerHTML = "";
+                addMessage("🧑 You", speech);
+
+                let reply = getAIResponse(speech);
+                addMessage("🤖 AI", reply);
+
+                /* Speak */
+                speechSynthesis.speak(new SpeechSynthesisUtterance(reply));
+
+            };
+
+            /* ================= ERROR ================= */
+            recognition.onerror = function() {
+                chat.innerHTML = "⚠️ Voice error. Please try again.";
+            };
+
+        });
+    </script>
+    <script src="js/script.js"></script>
+
 </body>
 
 </html>
-
-
-
-
-
-
-
-

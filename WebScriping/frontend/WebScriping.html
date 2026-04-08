@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Scraper Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🌐 Web Scraping Platform</h1>
+
+        <div class="card">
+            <input type="text" id="url" placeholder="Enter Website URL">
+
+            <select id="type">
+                <option value="text">Text</option>
+                <option value="links">Links</option>
+                <option value="images">Images</option>
+                <option value="tables">Tables</option>
+            </select>
+
+            <button onclick="scrapeData()">Scrape</button>
+        </div>
+
+        <div class="output-card">
+            <h3>📊 Output</h3>
+            <pre id="output">Your scraped data will appear here...</pre>
+        </div>
+
+        <button class="download-btn" onclick="downloadJSON()">⬇ Download JSON</button>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>

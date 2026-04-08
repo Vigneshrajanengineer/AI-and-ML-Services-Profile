@@ -1,152 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profile | Vignesh R</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile | Vignesh R</title>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<header class="navbar">
-    <div class="logo">Vignesh R</div>
-    <nav>
-        <a href="index.html">Dashboard</a>
-        <a href="profile.html" class="active">Profile</a>
-        <a href="contact.html">Contact</a>
-        <a href="Full AI Platform.html">Full AI Platform</a>
-        
-    </nav>
-</header>
-
-<section class="hero">
-    <h1>AI / ML Services Profile</h1>
-</section>
-
-<section class="section">
-    <h2>Professional Summary</h2>
-    <p>
-        Specialized in Computer Vision, NLP, and Speech AI model development.
-        Providing complete dataset preparation services including training,
-        validation, and testing dataset engineering.
-    </p>
-</section>
-
-<section class="section light-bg">
-    <h2>Core Services</h2>
-
-    <div class="card-container">
-        <div class="card">
-            <h3>Computer Vision</h3>
-            <p>Object detection, OCR, video analytics, deep learning pipelines.</p>
-        </div>
-
-        <div class="card">
-            <h3>Natural Language Processing</h3>
-            <p>Text classification, transformers, chatbots, LLM fine-tuning.</p>
-        </div>
-
-        <div class="card">
-            <h3>Speech AI</h3>
-            <p>Speech recognition, speaker modeling, audio preprocessing.</p>
-        </div>
-
-        <div class="card">
-            <h3>Dataset Engineering</h3>
-            <p>Data cleaning, annotation, train/val/test splitting.</p>
-        </div>
-    </div>
-</section>
-
-<section class="section">
-    <h2>Technology Stack</h2>
-    <div class="skills">
-        <span>Python</span>
-        <span>TensorFlow</span>
-        <span>PyTorch</span>
-        <span>OpenCV</span>
-        <span>Hugging Face</span>
-        <span>Docker</span>
+    <!-- ================= SIDEBAR ================= -->
+    <div id="sidebar" class="sidebar">
+        <a href="#" class="closebtn" onclick="closeMenu()">×</a>
+        <a href="index.html">🏠 Dashboard</a>
+        <a href="profile.html" class="active">👤 Profile</a>
+        <a href="contact.html">📞 Contact</a>
+        <a href="ai-platform.html">🤖 AI Platform</a>
+        <a href="WebScriping/frontend/WebScriping.html">🌐 Web Scraping Platform</a>
+        <a href="Autopreprocessing/frontend/preprocessing.html">📊Auto Data Preprocessing Platform</a>
+        <a href="AutoMLmodel/frontend/AutoMLmodel.html">🧠 ML Model Builder</a>
     </div>
 
-    <div style="margin-top:30px;">
-        <a href="assets/Vignesh_R_Resume.pdf" class="btn" download>
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+
+        <div class="nav-left">
+            <span class="menu-btn" onclick="openMenu()">☰</span>
+            <div class="logo">Vignesh R</div>
+        </div>
+
+        <nav class="nav-right">
+            <a href="index.html">Dashboard</a>
+            <a href="profile.html" class="active">Profile</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+    </header>
+
+    <section class="hero">
+        <h1>AI / ML Services Profile</h1>
+    </section>
+
+    <section class="section">
+        <h2>Professional Summary</h2>
+        <p>
+            Specialized in Computer Vision, NLP, and Speech AI model development. Providing complete dataset preparation services including training, validation, and testing dataset engineering.
+        </p>
+    </section>
+
+    <section class="section light-bg">
+        <h2>Core Services</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Computer Vision</h3>
+                <p>Object detection, OCR, video analytics, deep learning pipelines.</p>
+            </div>
+
+            <div class="card">
+                <h3>Natural Language Processing</h3>
+                <p>Text classification, transformers, chatbots, LLM fine-tuning.</p>
+            </div>
+
+            <div class="card">
+                <h3>Speech AI</h3>
+                <p>Speech recognition, speaker modeling, audio preprocessing.</p>
+            </div>
+
+            <div class="card">
+                <h3>Dataset Engineering</h3>
+                <p>Data cleaning, annotation, train/val/test splitting.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Technology Stack</h2>
+        <div class="skills">
+            <span>Python</span>
+            <span>TensorFlow</span>
+            <span>PyTorch</span>
+            <span>OpenCV</span>
+            <span>Hugging Face</span>
+            <span>Docker</span>
+        </div>
+
+        <div style="margin-top:30px;">
+            <a href="assets/Vignesh_R_Resume.pdf" class="btn" download>
             Download Resume
         </a>
-    </div>
-</section>
-  <!-- ================= CERTIFICATIONS ================= -->
+        </div>
+    </section>
+    <!-- ================= CERTIFICATIONS ================= -->
 
-<section class="section light-bg">
-    <h2>Certifications</h2>
+    <section class="section light-bg">
+        <h2>Certifications</h2>
 
-    <div class="certificate-container">
+        <div class="certificate-container">
 
-        <!-- Certificate 1 -->
-        <div class="certificate-card">
-            <img src="images/cert1.jpg" alt="AI Certification">
-            <h3>Oracle Cloud Infrastructure 2024 Generative AI Professional certification</h3>
-            <p>Issued by Oracle University</p>
+            <!-- Certificate 1 -->
+            <div class="certificate-card">
+                <img src="images/cert1.jpg" alt="AI Certification">
+                <h3>Oracle Cloud Infrastructure 2024 Generative AI Professional certification</h3>
+                <p>Issued by Oracle University</p>
 
-            <div class="cert-buttons">
-                <a href="assets/cert1.pdf" class="btn secondary-btn" download>
+                <div class="cert-buttons">
+                    <a href="assets/cert1.pdf" class="btn secondary-btn" download>
                     Download
                 </a>
 
-                <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=1D136B66723118500D6A2A6B9922F9C897CCD298ACD4719E203FF5734CB66B52" 
-                   class="btn verify-btn" 
-                   target="_blank">
+                    <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=1D136B66723118500D6A2A6B9922F9C897CCD298ACD4719E203FF5734CB66B52" class="btn verify-btn" target="_blank">
                     Verify
                 </a>
+                </div>
             </div>
-        </div>
 
-        <!-- Certificate 2 -->
-        <div class="certificate-card">
-            <img src="images/cert2.jpg" alt="NLP Certification">
-            <h3>Oracle Cloud Infrastructure (OCI) AI Foundations certification</h3>
-            <p>Issued by Oracle University</p>
+            <!-- Certificate 2 -->
+            <div class="certificate-card">
+                <img src="images/cert2.jpg" alt="NLP Certification">
+                <h3>Oracle Cloud Infrastructure (OCI) AI Foundations certification</h3>
+                <p>Issued by Oracle University</p>
 
-            <div class="cert-buttons">
-                <a href="assets/cert2.pdf" class="btn secondary-btn" download>
+                <div class="cert-buttons">
+                    <a href="assets/cert2.pdf" class="btn secondary-btn" download>
                     Download
                 </a>
 
-                <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=6869799694ED0ECE53491808B8BCE5A15266E8DB52DD22A5B8E0207C639CF989" 
-                   class="btn verify-btn" 
-                   target="_blank">
+                    <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=6869799694ED0ECE53491808B8BCE5A15266E8DB52DD22A5B8E0207C639CF989" class="btn verify-btn" target="_blank">
                     Verify
                 </a>
+                </div>
             </div>
-        </div>
 
-        <!-- Certificate 3 -->
-        <div class="certificate-card">
-            <img src="images/cert3.jpg" alt="Computer Vision Certification">
-            <h3>Oracle Cloud Infrastructure (OCI) AI Foundations certification</h3>
-            <p>Issued by Oracle University</p>
+            <!-- Certificate 3 -->
+            <div class="certificate-card">
+                <img src="images/cert3.jpg" alt="Computer Vision Certification">
+                <h3>Oracle Cloud Infrastructure (OCI) AI Foundations certification</h3>
+                <p>Issued by Oracle University</p>
 
-            <div class="cert-buttons">
-                <a href="assets/cert3.pdf" class="btn secondary-btn" download>
+                <div class="cert-buttons">
+                    <a href="assets/cert3.pdf" class="btn secondary-btn" download>
                     Download
                 </a>
 
-                <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=6869799694ED0ECE53491808B8BCE5A15266E8DB52DD22A5B8E0207C639CF989" 
-                   class="btn verify-btn" 
-                   target="_blank">
+                    <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=6869799694ED0ECE53491808B8BCE5A15266E8DB52DD22A5B8E0207C639CF989" class="btn verify-btn" target="_blank">
                     Verify
                 </a>
+                </div>
             </div>
+
         </div>
+    </section>
 
-    </div>
-</section>
+    <footer>
+        © 2026 Vignesh R | AI/ML Services
+    </footer>
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+        /* Sidebar */
+        function openMenu() {
+            document.getElementById("sidebar").style.width = "250px";
+            document.body.classList.add("shift");
+        }
 
-<footer>
-    © 2026 Vignesh R | AI/ML Services
-</footer>
-
+        function closeMenu() {
+            document.getElementById("sidebar").style.width = "0";
+            document.body.classList.remove("shift");
+        }
+    </script>
 </body>
 
 </html>
