@@ -98,3 +98,23 @@ if (wishBtn) {
     });
 }
 
+const noticeTrack = document.getElementById("noticeTrack");
+
+let position = window.innerWidth;
+
+function runNoticeBar() {
+
+    position -= 1;
+
+    // Reset when the complete text has moved out
+    if (position < -noticeTrack.offsetWidth) {
+        position = window.innerWidth;
+    }
+
+    noticeTrack.style.transform = `translateX(${position}px)`;
+
+    requestAnimationFrame(runNoticeBar);
+}
+
+runNoticeBar();
+
