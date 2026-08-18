@@ -351,26 +351,33 @@ body.shift {
 }
 .notice-bar {
     width: 100%;
-    padding: 12px 20px;
-    text-align: center;
+    overflow: hidden;
     background: linear-gradient(90deg, #111827, #1e3a8a);
-    color: #ffffff;
-    font-size: 15px;
+    color: white;
+    padding: 12px 0;
+    white-space: nowrap;
     box-sizing: border-box;
 }
 
-.notice-bar strong {
+.notice-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 100%;
+    font-size: 15px;
+}
+
+.notice-track strong {
     color: #facc15;
 }
 
-.notice-bar a {
-    margin-left: 10px;
+.notice-track a {
     color: #60a5fa;
-    font-weight: 700;
+    font-weight: bold;
     text-decoration: none;
 }
 
-.notice-bar a:hover {
-    color: #ffffff;
+.notice-track a:hover {
+    color: white;
     text-decoration: underline;
 }
