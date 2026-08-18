@@ -102,11 +102,12 @@ const noticeTrack = document.getElementById("noticeTrack");
 
 let position = window.innerWidth;
 
+const speed = 1.5; // Change to 1, 2, 3 etc.
+
 function runNoticeBar() {
 
-    position -= 1;
+    position -= speed;
 
-    // Reset when the complete text has moved out
     if (position < -noticeTrack.offsetWidth) {
         position = window.innerWidth;
     }
@@ -115,6 +116,12 @@ function runNoticeBar() {
 
     requestAnimationFrame(runNoticeBar);
 }
+
+window.addEventListener("resize", () => {
+    if (position < -noticeTrack.offsetWidth) {
+        position = window.innerWidth;
+    }
+});
 
 runNoticeBar();
 
